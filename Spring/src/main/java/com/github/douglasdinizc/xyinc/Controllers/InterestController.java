@@ -1,19 +1,31 @@
 package com.github.douglasdinizc.xyinc.Controllers;
 
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
 
 import com.github.douglasdinizc.xyinc.Models.InterestPoint;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.github.douglasdinizc.xyinc.Services.InterestPointService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/interest_points")
 public class InterestController {
 
-    private static final String template = "Hello, %s!";
+    @Autowired
+    private InterestPointService service;
 
-    @RequestMapping("/interest_points")
-    public InterestPoint greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new InterestPoint(name, 20, 10);
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<InterestPoint> index(@RequestParam(value = "x_coordinate") Integer x_coordinate, @RequestParam(value = "y_coordinate") Integer y_coordinate, @RequestParam(value = "max_distance") Integer max_distance) {
+        List<InterestPoint> result = service.find(x_coordinate, y_coordinate, max_distance);
+
+        return result;
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public InterestPoint store(@RequestBody InterestPoint ip) {
+        return service.save(ip);
     }
 }

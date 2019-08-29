@@ -15,5 +15,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface InterestPointDAO extends CrudRepository<InterestPoint, Long> {
 
     @Query("select ip from interest_points ip where sqrt( pow((ip.x_coordinate - :x_coordinate), 2) + pow((ip.y_coordinate - :y_coordinate), 2)) <= :max_distance")
-    List<InterestPoint> findByCoordinate(@Param("x_coordinate") Long x, @Param("y_coordinate") Long y, @Param("max_distance") Double distancia);
+    List<InterestPoint> findByCoordinate(@Param("x_coordinate") Integer x, @Param("y_coordinate") Integer y, @Param("max_distance") Integer max_distance);
 }

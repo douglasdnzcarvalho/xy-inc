@@ -14,24 +14,24 @@ public class InterestPointService {
     @Autowired
     private InterestPointDAO dao;
 
-    public List<InterestPoint> findAll() {
-        return (List<InterestPoint>) dao.findAll();
+    public List<InterestPoint> find(Integer x_coordinate, Integer y_coordinate, Integer max_distance) {
+        if (isValid(x_coordinate, y_coordinate, max_distance)) {
+            return dao.findByCoordinate(x_coordinate, x_coordinate, max_distance);
+        }else{
+            return (List<InterestPoint>) dao.findAll();
+        }
     }
 
-    public List<InterestPoint> findByCoordinate(Long x, Long y, Double distancia) {
-        return dao.findByCoordinate(x, y, distancia);
-    }
-
-    public InterestPoint save(InterestPoint poi) {
-        if (!isValid(poi)) {
+    public InterestPoint save(InterestPoint ip) {
+        if (!isValid(ip.getX_coordinate(), ip.getY_coordinate(), 0)) {
             return null;
         }
 
-        return dao.save(poi);
+        return dao.save(ip);
     }
 
-    private boolean isValid(InterestPoint poi) {
-        if ((poi.getX_coordinate() != null && poi.getX_coordinate() < 0) || (poi.getY_coordinate() != null && poi.getY_coordinate() < 0)) {
+    private boolean isValid(Integer x_coordinate, Integer y_coordinate, Integer max_distance) {
+        if ((x_coordinate != null && x_coordinate < 0) || (y_coordinate != null && y_coordinate < 0) || (max_distance != null && max_distance < 0)) {
             return false;
         }
 

@@ -1,7 +1,5 @@
 package com.github.douglasdinizc.xyinc.Models;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "interest_points")
 public class InterestPoint {
 
-    public InterestPoint(String name, int x_coordinate, int y_coordinate) {
+    public InterestPoint(String name, Integer x_coordinate, Integer y_coordinate) {
         this.name = name;
         this.x_coordinate = x_coordinate;
         this.y_coordinate = y_coordinate;
@@ -22,13 +20,10 @@ public class InterestPoint {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private Integer x_coordinate;
 
-    @NotNull
     private Integer y_coordinate;
 
     public String getName() {
