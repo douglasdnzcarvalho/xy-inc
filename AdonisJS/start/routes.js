@@ -16,5 +16,5 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get("pontos_interesse", "InterestPointController.index");
-Route.post("pontos_interesse", "InterestPointController.store");
+Route.get("interest_points", "InterestPointController.index");
+Route.post("interest_points", "InterestPointController.store");

@@ -5,18 +5,20 @@ const InterestPoint = use('App/Models/InterestPoint')
 
 class InterestPointController {
     /**
-     * GET pontos_interesse
+     * GET interest_points
      */
     async index({request}) {
         const queryParams = request.get();
 
-        if (queryParams.x && queryParams.y) {
-            const consulta = await Database
-            .raw('select * from interest_points ip where round(sqrt( pow((ip.x_coordinate - ?), 2) + pow((ip.y_coordinate - ?),2)), 2) <= ?', [queryParams.x, queryParams.y, queryParams.distance])
+        if (
+            (queryParams.x && queryParams.y && queryParams.distance) &&
+            (queryParams.x >= 0 && queryParams.y >= 0 && queryParams.distance >= 0)
+        ) {
+            const query = 'select ip.id, ip.name, ip.x_coordinate, ip.y_coordinate from interest_points ip where sqrt( pow((ip.x_coordinate - ?), 2) + pow((ip.y_coordinate - ?), 2)) <= ?';
             
-            console.log('consulta:', consulta)
+            const result = await Database.raw(query, [queryParams.x, queryParams.y, queryParams.distance])
 
-            return consulta;
+            return result.rows
         } else {
             const interestPoints = await InterestPoint.all()
 
@@ -25,7 +27,7 @@ class InterestPointController {
     }
 
     /**
-    * POST pontos_interesse
+    * POST interest_points
     */
     async store({ request }) {
         const data = request.only(['name', 'x_coordinate', 'y_coordinate']);
