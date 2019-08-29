@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class InterestPointsSchema extends Schema {
   up () {
-    this.createIfNotExists('interest_points', (table) => {
+    this.create('interest_points', (table) => {
       table.increments()
 
       table.string('name').notNullable()

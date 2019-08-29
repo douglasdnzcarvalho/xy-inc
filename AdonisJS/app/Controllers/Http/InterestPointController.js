@@ -11,12 +11,12 @@ class InterestPointController {
         const queryParams = request.get();
 
         if (
-            (queryParams.x && queryParams.y && queryParams.distance) &&
-            (queryParams.x >= 0 && queryParams.y >= 0 && queryParams.distance >= 0)
+            (queryParams.x && queryParams.y && queryParams.max_distance) &&
+            (queryParams.x >= 0 && queryParams.y >= 0 && queryParams.max_distance >= 0)
         ) {
             const query = 'select ip.id, ip.name, ip.x_coordinate, ip.y_coordinate from interest_points ip where sqrt( pow((ip.x_coordinate - ?), 2) + pow((ip.y_coordinate - ?), 2)) <= ?';
             
-            const result = await Database.raw(query, [queryParams.x, queryParams.y, queryParams.distance])
+            const result = await Database.raw(query, [queryParams.x, queryParams.y, queryParams.max_distance])
 
             return result.rows
         } else {
