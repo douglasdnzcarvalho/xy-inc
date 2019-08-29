@@ -1,16 +1,36 @@
-# AdonisJS #
+# AdonisJS
+
+## Dependências
+
+As seguintes dependências são necessárias:
+
+- [Node.js](https://nodejs.org/) (versão 8.0.0 ou maior)
+- NPM (versão 3.0.0 ou maior)
+- [AdonisJs Cli](https://github.com/adonisjs/adonis-cli)
+- Docker
+- Docker-compose
 
 ## Configuração
 
+#### Download das dependências
+
 ```bash
 npm install
+```
 
-docker-compose up
+#### Criação da chave da aplicação
 
+```bash
 adonis key:generate
 ```
 
-#### Criação da tabela
+#### Geração do container com o banco de dados
+
+```bash
+docker-compose up
+```
+
+#### Criação da tabela através de migrations
 
 ```bash
 adonis migration:run
