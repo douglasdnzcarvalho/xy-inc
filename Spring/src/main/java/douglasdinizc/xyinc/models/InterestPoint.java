@@ -1,14 +1,12 @@
-package com.github.douglasdinizc.xyinc.Models;
+package douglasdinizc.xyinc.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "interest_points")
 public class InterestPoint {
+    // Constructors
+    public InterestPoint(){}
 
     public InterestPoint(String name, Integer x_coordinate, Integer y_coordinate) {
         this.name = name;
@@ -18,13 +16,20 @@ public class InterestPoint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     private String name;
-
     private Integer x_coordinate;
-
     private Integer y_coordinate;
+
+    // Getters and Setters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
