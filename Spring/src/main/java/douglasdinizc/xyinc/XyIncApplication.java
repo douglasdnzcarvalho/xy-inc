@@ -1,4 +1,4 @@
-package com.github.douglasdinizc.xyinc;
+package douglasdinizc.xyinc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
