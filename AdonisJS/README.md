@@ -16,6 +16,10 @@ Certifique-se de que possui as seguintes dependências instaladas:
 npm install
 ```
 
+## Configuração do ambiente
+
+Faça uma cópia do arquivo *.env.example*, e o nomeie como *.env* . Neste arquivo é onde deve ser feita a configuração do projeto.
+
 ## Criação da chave da aplicação
 
 ```bash
